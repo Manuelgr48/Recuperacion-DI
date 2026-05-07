@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.liceolapaz.mgr.jugadores2ev.recu_di.controller.MainController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <top>
+        <HBox spacing="15" style="-fx-background-color: #333; -fx-padding: 10;">
+            <Button text="Users" onAction="#showUsersView" />
+            <Button text="Cars" onAction="#showCarsView" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Logout" onAction="#handleLogout" />
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="contentArea" />
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 10; -fx-background-color: #eee;">
+            <Label text="footer" />
+        </HBox>
+    </bottom>
+</BorderPane>
