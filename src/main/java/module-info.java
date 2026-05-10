@@ -1,6 +1,7 @@
 module com.liceolapaz.mgr.jugadores2ev.recu_di {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.liceolapaz.mgr.jugadores2ev.recu_di to javafx.fxml;
