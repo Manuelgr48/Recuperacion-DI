@@ -1,5 +1,6 @@
 package com.liceolapaz.mgr.jugadores2ev.recu_di;
 
+import com.liceolapaz.mgr.jugadores2ev.recu_di.util.View;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,10 +12,11 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("main_view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-        stage.setTitle("Car Management App");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(View.LOGIN.getFileName()));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        stage.setTitle("Car Management System - Login");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 
