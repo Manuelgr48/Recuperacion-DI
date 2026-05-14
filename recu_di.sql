@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS recu_di;
-USE recu_di_cars;
+USE recu_di;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -12,3 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (username, email, password, role)
 VALUES ('admin', 'admin@liceolapaz.com', 'admin123', 'ADMIN');
+-----------------------------------------------------------------------------------------------------------------
+
+USE recu_di;
+UPDATE users SET password = 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=' WHERE username = 'admin';
