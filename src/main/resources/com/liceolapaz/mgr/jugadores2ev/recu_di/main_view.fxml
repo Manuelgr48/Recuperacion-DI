@@ -8,8 +8,8 @@
 
     <top>
         <HBox spacing="15" style="-fx-background-color: #333; -fx-padding: 10;">
-            <Button text="Users" onAction="#showUsersView" />
-            <Button text="Cars" onAction="#showCarsView" />
+            <Button text="Users" onAction="#handleUsersNav" />
+            <Button text="Cars" onAction="#handleCarsNav" />
             <Region HBox.hgrow="ALWAYS" />
             <Button text="Logout" onAction="#handleLogout" />
         </HBox>
