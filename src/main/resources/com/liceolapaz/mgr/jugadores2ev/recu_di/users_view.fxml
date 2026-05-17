@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<StackPane xmlns:fx="http://javafx.com/fxml" style="-fx-background-color: #7f8c8d;">
-    <Label text="VISTA DE USUARIOS" style="-fx-text-fill: white; -fx-font-size: 24px;"/>
-</StackPane>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-background-color: #1e272e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.mgr.jugadores2ev.recu_di.controller.UsersController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="System Users Administration" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <TableView fx:id="usersTable" VBox.vgrow="ALWAYS" style="-fx-font-size: 14px; -fx-base: #2f3542; -fx-control-inner-background: #2f3542; -fx-text-background-color: white;">
+        <columns>
+            <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="usernameCol" prefWidth="180.0" text="Username" />
+            <TableColumn fx:id="emailCol" prefWidth="250.0" text="Email" />
+            <TableColumn fx:id="roleCol" prefWidth="100.0" text="Role" />
+            <TableColumn fx:id="favCarCol" prefWidth="150.0" text="Favorite Car ID" />
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+        <Label fx:id="statusLabel" textFill="#e74c3c">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+        <Button fx:id="deleteButton" onAction="#handleDeleteUser" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 15px;" text="Delete Selected User" />
+    </HBox>
+</VBox>
