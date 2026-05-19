@@ -35,7 +35,6 @@ public class CarCardController {
         } catch (Exception e) {
             System.err.println("Could not load image: " + car.getImageUrl());
         }
-
         if (isUserFavorite) {
             cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: #2ecc71; -fx-border-width: 3px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
             statusBadge.setText("YOUR FAVORITE");
