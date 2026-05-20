@@ -15,7 +15,9 @@
             </Label>
             <Region HBox.hgrow="ALWAYS" />
             <Button onAction="#handleCarsNav" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Cars Catalog" />
-            <Button onAction="#handleUsersNav" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;" text="Users" />
+
+            <Button fx:id="usersNavButton" onAction="#handleUsersNav" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;" text="Users" />
+
             <Button onAction="#handleLogout" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Logout" />
         </HBox>
     </top>
