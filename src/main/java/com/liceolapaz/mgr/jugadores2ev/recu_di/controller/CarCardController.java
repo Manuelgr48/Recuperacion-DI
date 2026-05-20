@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
 import java.util.function.Consumer;
 
 public class CarCardController {
@@ -28,16 +29,25 @@ public class CarCardController {
 
         brandModelLabel.setText(car.getBrand() + " " + car.getModel());
         specsLabel.setText(car.getHorsepower() + " HP");
-        priceLabel.setText("$" + car.getPrice());
+        priceLabel.setText(String.format("$%,.2f", car.getPrice()));
+
         try { carImageView.setImage(new Image(car.getImageUrl(), true)); } catch (Exception e) {}
 
-        if (isUserFav) {
+        if (isUserFav && isGlobalFav) {
+            cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: linear-gradient(to right, #2ecc71, #f1c40f); -fx-border-width: 4px; -fx-border-radius: 10px;");
+            statusBadge.setText("YOURS & GLOBAL");
+            statusBadge.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+            favoriteButton.setDisable(true);
+        } else if (isUserFav) {
             cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: #2ecc71; -fx-border-width: 3px; -fx-border-radius: 10px;");
             statusBadge.setText("YOUR FAVORITE");
+            statusBadge.setStyle("-fx-text-fill: #2ecc71; -fx-font-weight: bold;");
             favoriteButton.setDisable(true);
         } else if (isGlobalFav) {
             cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: #f1c40f; -fx-border-width: 3px; -fx-border-radius: 10px;");
             statusBadge.setText("GLOBAL FAVORITE");
+            statusBadge.setStyle("-fx-text-fill: #f1c40f; -fx-font-weight: bold;");
+            favoriteButton.setDisable(false);
         } else {
             cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: transparent; -fx-border-width: 3px; -fx-border-radius: 10px;");
             statusBadge.setText("");
