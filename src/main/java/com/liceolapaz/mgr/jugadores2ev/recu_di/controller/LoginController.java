@@ -96,11 +96,8 @@ public class LoginController {
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/com/liceolapaz/mgr/jugadores2ev/recu_di/" + fxmlFile));
-            Scene scene = new Scene(root, 1000, 700);
+            stage.getScene().setRoot(root);
             stage.setTitle(title);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
             errorLabel.setText("Error loading view: " + e.getMessage());

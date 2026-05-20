@@ -4,6 +4,7 @@ import com.liceolapaz.mgr.jugadores2ev.recu_di.model.Car;
 import com.liceolapaz.mgr.jugadores2ev.recu_di.model.User;
 import com.liceolapaz.mgr.jugadores2ev.recu_di.service.CarService;
 import com.liceolapaz.mgr.jugadores2ev.recu_di.util.SessionManager;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,21 +35,33 @@ public class CarsController {
 
     private void loadCars() {
         carsContainer.getChildren().clear();
+
         Task<Void> loadTask = new Task<>() {
             List<Car> carList;
             int globalFavId;
-            @Override protected Void call() {
+
+            @Override
+            protected Void call() throws Exception {
                 carList = carService.getAllCars();
                 globalFavId = carService.getGloballyMostFavoritedCarId();
                 return null;
             }
-            @Override protected void succeeded() {
+
+            @Override
+            protected void succeeded() {
                 User current = SessionManager.getCurrentUser();
                 for (Car car : carList) {
                     addCarCard(car, (current != null && current.getFavoriteCarId() == car.getId()), (globalFavId == car.getId()));
                 }
             }
+
+            @Override
+            protected void failed() {
+                System.err.println("Error loading cars from database:");
+                getException().printStackTrace();
+            }
         };
+
         new Thread(loadTask).start();
     }
 
@@ -63,12 +76,14 @@ public class CarsController {
                 loadCars();
             });
 
-
             card.setOnMouseClicked(event -> showCarDetails(car));
             card.setStyle(card.getStyle() + "-fx-cursor: hand;");
 
             carsContainer.getChildren().add(card);
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            System.err.println("Error loading FXML for car card: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void showCarDetails(Car car) {
@@ -77,7 +92,9 @@ public class CarsController {
         detailPriceLabel.setText(String.format("Price: $%,.2f", car.getPrice()));
         try {
             detailImageView.setImage(new Image(car.getImageUrl(), true));
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            System.err.println("Error loading image for detail panel: " + e.getMessage());
+        }
 
         detailPanel.setVisible(true);
         detailPanel.setManaged(true);

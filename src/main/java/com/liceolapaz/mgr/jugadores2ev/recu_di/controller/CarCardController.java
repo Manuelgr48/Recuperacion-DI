@@ -1,6 +1,7 @@
 package com.liceolapaz.mgr.jugadores2ev.recu_di.controller;
 
 import com.liceolapaz.mgr.jugadores2ev.recu_di.model.Car;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,13 @@ public class CarCardController {
     @FXML private Label statusBadge;
     @FXML private Button favoriteButton;
 
+    private Car car;
+    private Consumer<Car> onFavoriteCallback;
+
     public void setCarData(Car car, boolean isUserFav, boolean isGlobalFav, Consumer<Car> callback) {
+        this.car = car;
+        this.onFavoriteCallback = callback;
+
         brandModelLabel.setText(car.getBrand() + " " + car.getModel());
         specsLabel.setText(car.getHorsepower() + " HP");
         priceLabel.setText("$" + car.getPrice());
@@ -31,11 +38,18 @@ public class CarCardController {
         } else if (isGlobalFav) {
             cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: #f1c40f; -fx-border-width: 3px; -fx-border-radius: 10px;");
             statusBadge.setText("GLOBAL FAVORITE");
+        } else {
+            cardRoot.setStyle("-fx-background-color: #2f3542; -fx-border-color: transparent; -fx-border-width: 3px; -fx-border-radius: 10px;");
+            statusBadge.setText("");
+            favoriteButton.setDisable(false);
         }
+    }
 
-        favoriteButton.setOnAction(e -> {
-            e.consume();
-            callback.accept(car);
-        });
+    @FXML
+    private void handleFavoriteClick(ActionEvent event) {
+        event.consume();
+        if (onFavoriteCallback != null) {
+            onFavoriteCallback.accept(car);
+        }
     }
 }

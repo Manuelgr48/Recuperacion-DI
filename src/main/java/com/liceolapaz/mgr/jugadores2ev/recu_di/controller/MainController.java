@@ -13,14 +13,11 @@ public class MainController {
     private void handleLogout() {
         try {
             com.liceolapaz.mgr.jugadores2ev.recu_di.util.SessionManager.logout();
-
             Stage stage = (Stage) contentArea.getScene().getWindow();
             javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(getClass().getResource("/com/liceolapaz/mgr/jugadores2ev/recu_di/" + com.liceolapaz.mgr.jugadores2ev.recu_di.util.View.LOGIN.getFileName()));
-            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1000, 700);
+
+            stage.getScene().setRoot(root);
             stage.setTitle("Car Management System - Login");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
